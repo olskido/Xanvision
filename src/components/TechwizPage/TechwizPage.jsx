@@ -66,6 +66,11 @@ export default function TechwizPage({ fallbackNodes }) {
 
     onScroll()
     el.addEventListener('scroll', onScroll, { passive: true })
+
+    // Scroll to top on mount
+    window.scrollTo(0, 0)
+    el.scrollTop = 0
+
     return () => el.removeEventListener('scroll', onScroll)
   }, [])
 
