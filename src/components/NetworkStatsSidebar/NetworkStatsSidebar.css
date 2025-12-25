@@ -1,9 +1,9 @@
 .xv-sidebar {
   position: absolute;
-  left: 0;
+  left: 16px;
   top: var(--xv-top-offset, 80px);
   bottom: var(--xv-bottom-offset, 160px);
-  width: var(--xv-sidebar-w, 240px);
+  width: var(--xv-sidebar-w, 280px);
   z-index: 9;
   background: rgba(0, 0, 0, 0.78);
   border: 1px solid rgba(0, 204, 255, 0.55);

@@ -52,7 +52,12 @@ export default function Node3D({
       }
     })
 
-    if (closestNode) onSelectNode?.(closestNode)
+    if (closestNode) {
+      onSelectNode?.(closestNode)
+    } else {
+      // Deselect if clicking on empty space
+      onSelectNode?.(null)
+    }
   }
 
   const isDraggingRef = useRef(false)

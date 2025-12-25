@@ -43,6 +43,22 @@
   color: #ffffff;
 }
 
+.xv-explorer-back {
+  border: none;
+  background: transparent;
+  color: rgba(0, 204, 255, 0.9);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  transition: all 0.2s;
+}
+
+.xv-explorer-back:hover {
+  color: #ffffff;
+  transform: translateX(-2px);
+}
+
 .xv-explorer-body {
   padding: 12px;
   display: grid;

@@ -415,20 +415,77 @@ export default function TechwizPage({ fallbackNodes }) {
 
         {pageCount > 1 ? (
           <div className="tw-pagination">
-            {Array.from({ length: pageCount }).map((_, i) => {
-              const p = i + 1
+            {(() => {
+              const range = []
+              const delta = 1 // Number of pages to show around current page
+
+              // Always show first page
+              range.push(1)
+
+              // Calculate start and end of the window around current page
+              let start = Math.max(2, page - delta)
+              let end = Math.min(pageCount - 1, page + delta)
+
+              // Add ellipsis before window if needed
+              if (start > 2) {
+                range.push('...')
+              }
+
+              // Add pages in the window
+              for (let i = start; i <= end; i++) {
+                range.push(i)
+              }
+
+              // Add ellipsis after window if needed
+              if (end < pageCount - 1) {
+                range.push('...')
+              }
+
+              // Always show last page if not already added
+              if (pageCount > 1) {
+                range.push(pageCount)
+              }
+
               return (
-                <button
-                  key={p}
-                  type="button"
-                  className={p === page ? 'tw-hbtn tw-hbtn-active' : 'tw-hbtn'}
-                  onClick={() => setPage(p)}
-                  aria-label={`Page ${p}`}
-                >
-                  {p}
-                </button>
+                <>
+                  <button
+                    type="button"
+                    className="tw-hbtn tw-next-btn"
+                    onClick={() => setPage(Math.max(1, page - 1))}
+                    disabled={page === 1}
+                    aria-label="Previous Page"
+                  >
+                    &lt; Prev
+                  </button>
+
+                  {range.map((p, i) => (
+                    p === '...' ? (
+                      <span key={`ellipsis-${i}`} className="tw-pagination-ellipsis">...</span>
+                    ) : (
+                      <button
+                        key={p}
+                        type="button"
+                        className={p === page ? 'tw-hbtn tw-hbtn-active' : 'tw-hbtn'}
+                        onClick={() => setPage(p)}
+                        aria-label={`Page ${p}`}
+                      >
+                        {p}
+                      </button>
+                    )
+                  ))}
+
+                  <button
+                    type="button"
+                    className="tw-hbtn tw-next-btn"
+                    onClick={() => setPage(Math.min(pageCount, page + 1))}
+                    disabled={page === pageCount}
+                    aria-label="Next Page"
+                  >
+                    Next &gt;
+                  </button>
+                </>
               )
-            })}
+            })()}
           </div>
         ) : null}
       </section>

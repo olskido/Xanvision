@@ -352,8 +352,20 @@ app.use((req, res) => {
 
 const PORT = 3001
 
-app.listen(PORT, () => {
-    console.log(`
+// Export the app for Vercel
+export default app
+
+// Only start the server if running directly
+const isRunningDirectly = process.argv[1] === new URL(import.meta.url).pathname
+console.log('[DEBUG] Checking execution mode:', {
+    argv1: process.argv[1],
+    importMeta: new URL(import.meta.url).pathname,
+    isRunningDirectly
+})
+
+if (isRunningDirectly) {
+    app.listen(PORT, () => {
+        console.log(`
 ╔════════════════════════════════════════════════╗
 ║        XANDEUM PROXY SERVER RUNNING           ║
 ╠════════════════════════════════════════════════╣
@@ -364,4 +376,5 @@ app.listen(PORT, () => {
 ║  Stats:   http://localhost:${PORT}/api/xandeum/network-stats
 ╚════════════════════════════════════════════════╝
   `)
-})
+    })
+}

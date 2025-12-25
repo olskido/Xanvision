@@ -362,16 +362,42 @@
 }
 
 .analytics-page .tw-metric .tw-v {
-  font-size: 2.5rem;
-  /* Increased from default */
+  font-size: 1.05rem;
+  /* Reduced from 2.5rem for better mobile fit */
 }
 
 .analytics-page .tw-metric .tw-k {
-  font-size: 1rem;
-  /* Increased from default */
+  font-size: 0.9rem;
+  /* Slightly reduced */
 }
 
 .analytics-page .tw-card-title {
-  font-size: 1.2rem;
-  /* Increased from default */
+  font-size: 1.1rem;
+  /* Slightly reduced */
+}
+
+.tw-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+.tw-pagination-ellipsis {
+  color: rgba(160, 255, 255, 0.65);
+  font-size: 14px;
+  padding: 0 4px;
+}
+
+.tw-next-btn {
+  padding: 0 16px;
+  min-width: auto;
+}
+
+.tw-next-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: rgba(0, 204, 255, 0.1);
 }

@@ -28,6 +28,7 @@ const XanVision = () => {
   const [activeMobileComponent, setActiveMobileComponent] = useState(null)
   const [showWarnings, setShowWarnings] = useState(false)
   const [showBrainInsights, setShowBrainInsights] = useState(false)
+  const [openedFromWarnings, setOpenedFromWarnings] = useState(false)
 
   const { registerItems, unregisterItems } = useMobileMenu()
 
@@ -284,6 +285,7 @@ const XanVision = () => {
           onSelectNode={(node) => {
             setSelectedNode(node)
             setExplorerOpen(true)
+            setOpenedFromWarnings(false)
             playSound(600, 0.15)
             setScore((prev) => prev + 5)
           }}
@@ -322,6 +324,11 @@ const XanVision = () => {
         open={explorerOpen}
         node={selectedNode}
         onClose={() => setExplorerOpen(false)}
+        onBack={openedFromWarnings ? () => {
+          setExplorerOpen(false)
+          setShowWarnings(true)
+          setOpenedFromWarnings(false)
+        } : undefined}
       />
 
       <SimulationIndicator visible={isSimulation} />
@@ -385,6 +392,7 @@ const XanVision = () => {
                       setSelectedNode(node)
                       setExplorerOpen(true)
                       setShowWarnings(false)
+                      setOpenedFromWarnings(true)
                       playSound(600, 0.15)
                     }}
                     style={{ cursor: 'pointer' }}

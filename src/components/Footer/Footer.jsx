@@ -24,10 +24,10 @@ export default function Footer() {
                     <a href="https://xandeum.com" target="_blank" rel="noopener noreferrer" className="xv-footer-link">
                         xandeum
                     </a>
-                    <a href="#" className="xv-footer-link">
+                    <a href="https://docs.xandeum.network/" className="xv-footer-link">
                         documentation
                     </a>
-                    <a href="#" className="xv-footer-link">
+                    <a href="https://xandsol.xandeum.network/validators" className="xv-footer-link">
                         validators
                     </a>
                 </div>
@@ -40,7 +40,7 @@ export default function Footer() {
                     <a href="https://t.me/olskido" className="xv-social-link" aria-label="Telegram">
                         <img src={telegramIcon} alt="Telegram" />
                     </a>
-                    <a href="https://x.com/olskido" className="xv-social-link" aria-label="X">
+                    <a href="https://x.com/olskiddo" className="xv-social-link" aria-label="X">
                         <img src={xIcon} alt="X" />
                     </a>
                     <a href="https://discord.gg/olskido" className="xv-social-link" aria-label="Discord">

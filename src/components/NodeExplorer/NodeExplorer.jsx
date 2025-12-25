@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Copy, Check, ExternalLink } from 'lucide-react'
+import { Copy, Check, ExternalLink, ArrowLeft } from 'lucide-react'
 import { getNodeDetails, getRpcBaseUrl } from '../../utils/xandeumRpc.js'
 import { shortenNodeId } from '../../utils/techwizHeuristics.js'
 import './NodeExplorer.css'
 
-export default function NodeExplorer({ node, open, onClose }) {
+export default function NodeExplorer({ node, open, onClose, onBack }) {
   if (!open) return null
 
   const rpcBaseUrl = useMemo(() => getRpcBaseUrl() || '', [])
@@ -62,7 +62,14 @@ export default function NodeExplorer({ node, open, onClose }) {
   return (
     <div className="xv-explorer" role="dialog" aria-label="pNode explorer">
       <div className="xv-explorer-head">
-        <div className="xv-explorer-title">PNODE EXPLORER</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          {onBack && (
+            <button type="button" className="xv-explorer-back" onClick={onBack} aria-label="Back">
+              <ArrowLeft size={16} />
+            </button>
+          )}
+          <div className="xv-explorer-title">PNODE EXPLORER</div>
+        </div>
         <button type="button" className="xv-explorer-close" onClick={onClose} aria-label="Close">
           ×
         </button>
