@@ -1,0 +1,118 @@
+/* Hamburger Button */
+.xv-global-menu-btn {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 204, 255, 0.5);
+    color: #00ccff;
+    padding: 8px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+    display: none;
+    /* Hidden by default, shown on mobile */
+}
+
+/* Menu Overlay */
+.xv-global-menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    /* High z-index to cover everything */
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: flex-start;
+    animation: xv-fadeIn 0.2s ease-out;
+}
+
+.xv-global-menu {
+    width: 260px;
+    height: 100%;
+    background: rgba(10, 10, 15, 0.95);
+    border-right: 1px solid rgba(0, 204, 255, 0.3);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: xv-slideIn 0.2s ease-out;
+}
+
+.xv-global-menu-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #00ccff;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+}
+
+.xv-global-menu-head button {
+    background: transparent;
+    border: none;
+    color: #00ccff;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.xv-global-menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.xv-global-menu-item {
+    background: transparent;
+    border: 1px solid rgba(0, 204, 255, 0.2);
+    color: #fff;
+    padding: 12px;
+    text-align: left;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.xv-global-menu-item:hover {
+    background: rgba(0, 204, 255, 0.1);
+    border-color: rgba(0, 204, 255, 0.5);
+}
+
+.xv-item-global {
+    border-color: rgba(0, 204, 255, 0.4);
+    background: rgba(0, 204, 255, 0.05);
+}
+
+@keyframes xv-fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes xv-slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Mobile Media Query */
+@media (max-width: 768px) {
+    .xv-global-menu-btn {
+        display: flex;
+    }
+}

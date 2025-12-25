@@ -1,0 +1,14 @@
+.xv-sim-badge {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 13;
+  background: rgba(255, 204, 0, 0.95);
+  color: rgba(0, 0, 0, 0.9);
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}

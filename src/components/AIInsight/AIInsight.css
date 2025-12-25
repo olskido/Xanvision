@@ -1,0 +1,39 @@
+.xv-ai-panel {
+  position: absolute;
+  top: 96px;
+  right: 16px;
+  max-width: 520px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.88);
+  border: 2px solid rgba(190, 120, 255, 0.9);
+  border-radius: 12px;
+  padding: 14px;
+  backdrop-filter: blur(6px);
+  animation: xvPulse 1.25s infinite;
+}
+
+.xv-ai-title {
+  font-size: 11px;
+  color: rgba(220, 180, 255, 0.9);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.xv-ai-text {
+  margin: 0;
+  font-size: 14px;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+@keyframes xvPulse {
+  0% {
+    box-shadow: 0 0 0 rgba(190, 120, 255, 0.0);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(190, 120, 255, 0.25);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(190, 120, 255, 0.0);
+  }
+}

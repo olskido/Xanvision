@@ -1,0 +1,81 @@
+.xv-controls {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: grid;
+  gap: 12px;
+  z-index: 10;
+  width: 280px;
+}
+
+@media (max-width: 820px) {
+  .xv-controls {
+    left: 12px;
+    right: 12px;
+    width: auto;
+  }
+}
+
+.xv-panel {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(0, 204, 255, 0.65);
+  border-radius: 10px;
+  padding: 12px;
+  backdrop-filter: blur(6px);
+}
+
+.xv-panel-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: rgba(160, 255, 255, 0.85);
+  margin-bottom: 10px;
+}
+
+.xv-btn-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.xv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 204, 255, 0.75);
+  background: rgba(0, 80, 110, 0.35);
+  color: #bff7ff;
+  cursor: pointer;
+}
+
+.xv-btn:hover {
+  background: rgba(0, 100, 140, 0.45);
+}
+
+.xv-panel-sub {
+  font-size: 11px;
+  color: rgba(160, 255, 255, 0.85);
+  margin-bottom: 6px;
+}
+
+.xv-slider {
+  width: 100%;
+}
+
+.xv-ai-btn {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(200, 140, 255, 0.7);
+  background: linear-gradient(to right, rgba(90, 30, 120, 0.85), rgba(20, 60, 140, 0.85));
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.xv-ai-btn:hover {
+  filter: brightness(1.08);
+}

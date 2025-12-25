@@ -1,0 +1,33 @@
+.globe3d-root {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.globe3d-root canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.globe3d-hint {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, calc(-50% + 220px));
+  z-index: 2;
+  pointer-events: none;
+  font-size: 12px;
+  color: rgba(200, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(0, 204, 255, 0.25);
+  padding: 6px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+
+@media (max-height: 700px) {
+  .globe3d-hint {
+    display: none;
+  }
+}

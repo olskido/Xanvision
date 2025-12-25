@@ -1,0 +1,41 @@
+{
+  "name": "xanvision",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "proxy": "node proxy-server.js",
+    "dev:all": "concurrently --kill-others \"npm run proxy\" \"npm run dev\"",
+    "test:proxy": "node -e \"fetch('http://localhost:3001/health').then(r=>r.json()).then(console.log).catch(e=>console.error('Proxy not running:', e.message))\""
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.4.2",
+    "@solana/web3.js": "^1.98.4",
+    "@xandeum/web3.js": "^0.8.3",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "lucide-react": "^0.562.0",
+    "node-fetch": "^2.7.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.11.0",
+    "three": "^0.182.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "vite": "^7.2.4"
+  }
+}

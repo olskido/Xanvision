@@ -1,0 +1,72 @@
+:root {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: dark;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #000;
+  /* overflow: hidden; - Removed to allow scrolling to footer */
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.xv-nav {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: inline-flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-width: calc(100% - 24px);
+  justify-content: center;
+  padding: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 204, 255, 0.35);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+}
+
+.xv-nav-link {
+  text-decoration: none;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: rgba(200, 255, 255, 0.85);
+  border: 1px solid rgba(0, 204, 255, 0.0);
+}
+
+.xv-nav-link:hover {
+  background: rgba(0, 80, 110, 0.25);
+}
+
+.xv-nav-link-active {
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(0, 204, 255, 0.14);
+  border-color: rgba(0, 204, 255, 0.45);
+}
+
+@media (max-width: 768px) {
+  .xv-nav {
+    display: none;
+  }
+}
