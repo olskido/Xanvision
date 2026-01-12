@@ -9,7 +9,7 @@
   border-radius: 12px;
   padding: 14px;
   backdrop-filter: blur(6px);
-  animation: xvPulse 0.6s ease-in-out;
+  animation: xvPulse 0.005s ease-in-out;
 }
 
 .xv-ai-title {
