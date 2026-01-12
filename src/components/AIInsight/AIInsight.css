@@ -9,7 +9,7 @@
   border-radius: 12px;
   padding: 14px;
   backdrop-filter: blur(6px);
-  animation: xvPulse 0.3s ease-in-out;
+  animation: xvPulse 0.6s ease-in-out;
 }
 
 .xv-ai-title {
@@ -24,15 +24,40 @@
   font-size: 14px;
   color: #ffffff;
   line-height: 1.4;
+  min-height: 40px;
+  /* Prevent layout shift during typing */
+}
+
+.xv-cursor {
+  display: inline-block;
+  color: rgba(190, 120, 255, 1);
+  animation: xvBlink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes xvBlink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes xvPulse {
   0% {
     box-shadow: 0 0 0 rgba(190, 120, 255, 0.0);
+    opacity: 0;
+    transform: translateY(-10px);
   }
 
   50% {
     box-shadow: 0 0 18px rgba(190, 120, 255, 0.25);
+    opacity: 1;
+    transform: translateY(0);
   }
 
   100% {

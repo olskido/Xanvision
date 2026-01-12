@@ -183,18 +183,41 @@ const XanVision = () => {
     const warnings = effectiveNodes.filter((n) => n.health === 'warning')
     const avg = effectiveNodes.reduce((acc, n) => acc + (n.uptime_percent || n.uptime || 0), 0) / effectiveNodes.length
 
-    const insights = [
-      `Network health: ${avg.toFixed(1)}% average uptime across ${effectiveNodes.length} nodes`,
-      `${warnings.length} nodes require attention - uptime below 85%`,
-      `Optimal peer distribution detected in EU region - 15% above average`,
-      `Storage utilization: ${(effectiveNodes.reduce((a, n) => a + (n.storage || 0), 0) / 1000).toFixed(1)}TB total capacity`,
-      `Predicted network growth: +8% nodes in next 24h based on gossip patterns`,
-      `Latency optimization recommended for South America region`,
-      `New high-performance clusters detected in Asia-Pacific`,
-      `Storage redundancy levels are optimal (3.2x replication)`,
-      `Gossip protocol efficiency increased by 12% in last epoch`,
-      `Validator participation rate stable at 98.5%`
-    ]
+    const insights = []
+
+    // 1. Network Health Analysis
+    if (avg > 98) insights.push(`Network health is optimal. Average uptime: ${avg.toFixed(1)}% across ${effectiveNodes.length} nodes.`)
+    else if (avg > 90) insights.push(`Network health is stable. Average uptime: ${avg.toFixed(1)}%.`)
+    else insights.push(`Network degradation detected. Average uptime dropped to ${avg.toFixed(1)}%.`)
+
+    // 2. Warnings / Risks
+    if (warnings.length > 0) {
+      insights.push(`${warnings.length} nodes require attention (Health: Warning). Immediate investigation recommended.`)
+      const worstNode = warnings.sort((a, b) => a.uptime - b.uptime)[0]
+      if (worstNode) insights.push(`Critical Node Detected: ${shortenNodeId(worstNode.id)} is operating at ${worstNode.uptime.toFixed(1)}% uptime.`)
+    } else {
+      insights.push(`All ${effectiveNodes.length} nodes are operating within optimal parameters. No active warnings.`)
+    }
+
+    // 3. Region Analysis
+    const regions = effectiveNodes.reduce((acc, n) => {
+      acc[n.region] = (acc[n.region] || 0) + 1
+      return acc
+    }, {})
+    const topRegion = Object.entries(regions).sort((a, b) => b[1] - a[1])[0]
+    if (topRegion) {
+      insights.push(`Regional dominance: ${topRegion[0]} hosts ${topRegion[1]} active nodes (${((topRegion[1] / effectiveNodes.length) * 100).toFixed(0)}% of network).`)
+    }
+
+    // 4. Storage Analysis
+    const totalStorageTb = effectiveNodes.reduce((a, n) => a + (n.capacityGb || n.storage || 0), 0) / 1000
+    const usedStorageTb = effectiveNodes.reduce((a, n) => a + (n.storage_used_gb || 0), 0) / 1000
+    const utilPercent = (usedStorageTb / totalStorageTb) * 100
+    insights.push(`Global Storage: ${usedStorageTb.toFixed(1)}TB used of ${totalStorageTb.toFixed(1)}TB capacity (${utilPercent.toFixed(1)}% utilization).`)
+
+    // 5. Performance/Gossip
+    const highPerfNodes = effectiveNodes.filter(n => n.uptime > 99).length
+    insights.push(`${highPerfNodes} nodes are performing at elite levels (>99% uptime). Gossip protocol efficiency is high.`)
 
     const insight = insights[Math.floor(Math.random() * insights.length)]
     setAiInsight(insight)
