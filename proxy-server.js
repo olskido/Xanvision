@@ -68,7 +68,7 @@ async function resolveRegions(pods) {
                 fields: 'status,message,country,regionName,lat,lon'
             }))
 
-            const res = await fetch('http://ip-api.com/batch', {
+            const res = await safeFetch('http://ip-api.com/batch', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body)
@@ -162,7 +162,7 @@ async function fetchLiveNodes() {
         console.log('[RPC] Fetching live cluster nodes from Xandeum mainnet...')
         console.log('[RPC] Endpoint:', RPC_URL)
 
-        const res = await fetch(RPC_URL, {
+        const res = await safeFetch(RPC_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -336,16 +336,41 @@ app.get('/api/xandeum/network-stats', async (req, res) => {
     }
 })
 
-// Health check
-app.get('/health', (req, res) => {
+// Health check (handle both root and /api paths for Vercel)
+const healthHandler = (req, res) => {
     res.json({
         status: 'ok',
         rpc_url: RPC_URL,
         cache_age_ms: podsCache.timestamp ? Date.now() - podsCache.timestamp : null,
         cached_pods: podsCache.data?.length || 0,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        env: process.env.NODE_ENV
+    })
+}
+
+app.get('/health', healthHandler)
+app.get('/api/health', healthHandler)
+
+// Debug endpoint to inspect Vercel environment
+app.get('/api/debug', (req, res) => {
+    res.json({
+        headers: req.headers,
+        url: req.url,
+        originalUrl: req.originalUrl,
+        baseUrl: req.baseUrl,
+        path: req.path,
+        env: process.env.NODE_ENV,
+        node_version: process.version
     })
 })
+
+// Native fetch wrapper to avoid ESM/CommonJS issues on Vercel
+const safeFetch = (url, options) => {
+    if (typeof global.fetch === 'function') {
+        return global.fetch(url, options)
+    }
+    return fetch(url, options)
+}
 
 app.use((req, res) => {
     res.status(404).json({ error: 'Not found', path: req.path })
