@@ -47,6 +47,7 @@ export function MobileMenuProvider({ children }) {
     )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useMobileMenu() {
     const context = useContext(MobileMenuContext)
     if (!context) {

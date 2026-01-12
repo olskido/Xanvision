@@ -163,7 +163,9 @@ export async function getNetworkStats(options = {}) {
         regionCounts: response.stats.regionCounts || {},
       }
     }
-  } catch (err) { }
+  } catch {
+    // Ignore errors from the dedicated stats endpoint and fall back to pod aggregation
+  }
 
   // Fallback: compute stats from pods data
   const pods = await getPodsWithStats(options)

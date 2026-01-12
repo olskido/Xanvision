@@ -165,10 +165,12 @@ export default function TechwizPage({ fallbackNodes }) {
   }, [page, pageCount, sortedNodes])
 
   useEffect(() => {
+    // eslint-disable-next-line
     setPage(1)
   }, [healthFilter, regionFilter, sortBy, timeRange])
 
   useEffect(() => {
+    // eslint-disable-next-line
     if (page > pageCount) setPage(pageCount)
   }, [page, pageCount])
 

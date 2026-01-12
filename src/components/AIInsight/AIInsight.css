@@ -9,7 +9,7 @@
   border-radius: 12px;
   padding: 14px;
   backdrop-filter: blur(6px);
-  animation: xvPulse 1.25s infinite;
+  animation: xvPulse 0.3s ease-in-out;
 }
 
 .xv-ai-title {
@@ -30,9 +30,11 @@
   0% {
     box-shadow: 0 0 0 rgba(190, 120, 255, 0.0);
   }
+
   50% {
     box-shadow: 0 0 18px rgba(190, 120, 255, 0.25);
   }
+
   100% {
     box-shadow: 0 0 0 rgba(190, 120, 255, 0.0);
   }

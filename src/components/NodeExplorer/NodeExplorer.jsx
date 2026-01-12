@@ -6,8 +6,6 @@ import { shortenNodeId } from '../../utils/techwizHeuristics.js'
 import './NodeExplorer.css'
 
 export default function NodeExplorer({ node, open, onClose, onBack }) {
-  if (!open) return null
-
   const rpcBaseUrl = useMemo(() => getRpcBaseUrl() || '', [])
   const [rpcNode, setRpcNode] = useState(null)
   const [rpcLoading, setRpcLoading] = useState(false)
@@ -21,7 +19,6 @@ export default function NodeExplorer({ node, open, onClose, onBack }) {
       setTimeout(() => setCopied(false), 2000)
     }
   }
-
   useEffect(() => {
     if (!open) return
     if (!rpcBaseUrl) return
@@ -56,6 +53,8 @@ export default function NodeExplorer({ node, open, onClose, onBack }) {
       controller.abort()
     }
   }, [node?.id, open, rpcBaseUrl])
+
+  if (!open) return null
 
   const effectiveNode = rpcNode && typeof rpcNode === 'object' ? { ...node, ...rpcNode } : node
 

@@ -41,7 +41,7 @@ export default function useXandeumNodes({ fallbackNodes = [] } = {}) {
 
       try {
         await fetchNodes(controller.signal)
-      } catch (err) {
+      } catch {
         // Already handled
       }
     }
