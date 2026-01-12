@@ -15,7 +15,7 @@ app.use(cors({
 app.use(express.json())
 
 // CORRECT Xandeum Mainnet RPC endpoint
-const RPC_URL = 'https://xandeum.helius-rpc.com'
+const RPC_URL = 'https://api.mainnet.xandeum.com'
 const TIMEOUT_MS = 20000
 
 // Cache
